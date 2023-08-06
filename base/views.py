@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from .forms import RoomForm
-from .models import Room, Topic
+from .models import Room, Topic,Message
 # rooms = [
 #     {'id':1, 'name':'Lets learn python!'},
 #     {'id':2,'name':'Design with me'},
@@ -75,7 +75,16 @@ def home(request):
 def room(request,pk):
     # return HttpResponse('ROOM')
     room = Room.objects.get(id = pk)
-    context = {'room':room}
+    room_messages = room.message_set.all().order_by('-created')
+  
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user = request.user,
+            room = room,
+            body = request.POST.get('body')
+        )
+        return redirect('room',pk = room.id)
+    context = {'room':room, 'room_messages': room_messages}
   
     return render(request, 'base/room.html',context)
 
