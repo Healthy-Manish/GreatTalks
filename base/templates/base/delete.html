@@ -1,5 +1,23 @@
 {% extends 'main.html'%}
 {% block content%}
+  <style>
+        .delete-item.layout .layout__box {
+            max-width: 68rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .layout__body {
+            margin: auto;
+        }
+        .form{
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
     <main class="delete-item layout">
         <div class="container">
             <div class="layout__box">
