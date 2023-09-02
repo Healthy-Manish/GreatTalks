@@ -1,9 +1,10 @@
 {% extends 'main.html'%}
 {% block content%}
+
     <main class="auth layout">
 
       {% if page == 'login'%}
-      <div class="container">
+      <div class="container login">
         <div class="layout__box">
           <div class="layout__boxHeader">
             <div class="layout__boxTitle">
@@ -17,10 +18,10 @@
               {% csrf_token %}
               <div class="form__group form__group">
                 <label for="room_name">Username</label>
-                <input id="username" name="username" type="text" placeholder="e.g. dennis_ivy" />
+                <input id="username" name="username" type="text" placeholder="e.g. dennis_ivy"required />
               </div>
               <div class="form__group">
-                <label for="password">Password</label>
+                <label for="password"required>Password</label>
                 <input
                   id="password"
                   name="password"
@@ -29,7 +30,7 @@
                 />
               </div>
 
-              <button class="btn btn--main" type="submit">
+              <button class="btn btn--main login-btn" type="submit">
                 <svg
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +59,7 @@
         </div>
       </div>
       {% else %}
-      <div class="container">
+      <div class="container login">
         <div class="layout__box">
           <div class="layout__boxHeader">
             <div class="layout__boxTitle">
@@ -100,11 +101,12 @@
 
             <div class="auth__action">
               <p>Already signed up</p>
-              <a href="{% url 'login' %}" class="btn btn--link">Sign Up</a>
+              <a href="{% url 'login' %}" class="btn btn--link">Login</a>
             </div>
           </div>
         </div>
       </div>
       {% endif %}
+     
     </main>
 {% endblock content%}
